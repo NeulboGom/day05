@@ -1,31 +1,50 @@
 #Chapter9 Fucntion
+'''
+def substract(n1,n2):
+    print(n1-n2)
 
-number_of_people = int(input("방문 인원 수를 말씀해 주세요:"))
-def cal_fee(args):     #-><type>: 타입 힌트
-    '''
-    놀이공원 요금 계산 프로그램z
-    args: input에서 받은 인원수
-    count_adult: 성인 인원 수
-    count_child: 아동 인원수
-    totla: 총 요금
-    '''
-    import random
-    total = 0
-    count_adult = 0
-    count_child = 0
-    ages=[random.randint(1,100) for age in range(number_of_people)]
-    for age in ages:
-        if age>=19:
-            total+=10000
-            count_adult+=1
-        else:
-            total+=3000
-            count_child+=1
-    return {"총 인원": len(ages),"어른":count_adult,"아동":count_child,"총 금액":total}
+def run_func(f,arg1,arg2):
+    f(arg1,arg2)
 
-        #f"인원수는 {len(ages)}명이고, 그 중 어른은 {count_adult}명, 아동은 {count_child}명입니다. 총 요금은 {total}원 입니다."
+run_func(substract, 99, 98)'''
 
 
-results=cal_fee(number_of_people)
-print(results)
-print(f"총 인원은 {results['총 인원']}명이고, 그 중 어른은 {results['어른']}명, 아동은 {results['아동']}명입니다. 총  요금은 {results['총 금액']}원 입니다.")
+def substract(n1,n2):
+    return n1-n2
+
+def run_func(f,arg1,arg2):
+    f(arg1,arg2)
+
+print(run_func(substract, 99, 98))
+
+
+#함수는 객체로 다뤄지고 매개변수로도 쓸 수 있고
+#Return 용도로도 쓸 수 있다.
+
+
+def caculate():
+    x,y=1,2
+    temp=0
+    def add_sub(n):
+        nonlocal temp
+        #x=11
+        temp = temp+x+n-y
+        return temp
+
+    return add_sub
+
+
+c1=caculate()
+for i in range(10):
+    print(c1(i))
+
+
+def outer(a,b):
+
+    def inner(c,d):
+        return c+d
+
+    return inner(a,b)
+
+
+print(outer(4,7))
